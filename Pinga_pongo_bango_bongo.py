@@ -57,6 +57,11 @@ class Player(Labamba_a):
 
 fafa_right = Player('Tenis_rocket.png',600,450,50,50,5)
 fifi_left = Player('Tenis_rocket.png',50,450,50,50,5)
+Much_ball_navernoe = Labamba_a('Much_ball.png',300,235,50,50,5)
+
+
+speed_x = 5
+speed_y = 5
 
 finish = False
 
@@ -80,6 +85,14 @@ while game:
 
         fifi_left.update_left()
         fifi_left.reset()
+
+        Much_ball_navernoe.rect.x += speed_x
+        Much_ball_navernoe.rect.y += speed_y
+        if Much_ball_navernoe.rect.y >= 450 or Much_ball_navernoe.rect.y <= 0:
+            speed_y *= -1
+        if sprite.collide_rect(fafa_right,Much_ball_navernoe) or sprite.collide_rect(fifi_left,Much_ball_navernoe):
+            speed_x *= -1
+        Much_ball_navernoe.reset()
 
 
     clock.tick(FPS)
