@@ -14,12 +14,12 @@ font = font.SysFont('Arial', 70)
 
 #font2 = font.SysFont('Arial',20)
 
-win = font.render(
-    'YOU WIN', True, (255,215,0)
+ower1 = font.render(
+    'Player 1 lose', True, (255,215,0)
 )
 
-ower = font.render(
-    'GAME OWER', True, (255,215,0)
+ower2 = font.render(
+    'Player 2 lose', True, (255,215,0)
 )
 
 
@@ -81,10 +81,10 @@ while game:
         window.fill(cet_okna)
         
         fafa_right.update_right()
-        fafa_right.reset()
+        
 
         fifi_left.update_left()
-        fifi_left.reset()
+        
 
         Much_ball_navernoe.rect.x += speed_x
         Much_ball_navernoe.rect.y += speed_y
@@ -92,8 +92,17 @@ while game:
             speed_y *= -1
         if sprite.collide_rect(fafa_right,Much_ball_navernoe) or sprite.collide_rect(fifi_left,Much_ball_navernoe):
             speed_x *= -1
-        Much_ball_navernoe.reset()
 
+        if Much_ball_navernoe.rect.x > 700:
+            finish = True
+            window.blit(ower2,(200,200))
+        if Much_ball_navernoe.rect.x < 0:
+            finish = True
+            window.blit(ower1,(200,200))
+
+        Much_ball_navernoe.reset()
+        fafa_right.reset()
+        fifi_left.reset()
 
     clock.tick(FPS)
     display.update()
